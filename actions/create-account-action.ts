@@ -1,9 +1,10 @@
 "use server";
 
-import { RegisterSchema } from "@/src";
+import { ErrorSchema, RegisterSchema, SuccessSchema } from "@/src";
 
 type ActionStateType = {
     errors: string[];
+    success: string;
 }
 
 
@@ -23,13 +24,14 @@ export async function createAccountAction(prevState: ActionStateType, formData: 
     if (!register.success) {
         const errors = register.error.errors.map((error) => error.message)
         return {
-            errors
+            errors,
+            success:prevState.success
         }
     }
     
 
     //Enviar datos a la API
-    const url = `${process.env.API_URL}auth/create-acount`;
+    const url = `${process.env.API_URL}/auth/create-acount`;
     const req = await fetch(url, {
         method: "POST",
         headers: {
@@ -43,9 +45,19 @@ export async function createAccountAction(prevState: ActionStateType, formData: 
     })
 
     const res = await req.json();
-    console.log("Response: ", res);
+    
+    if(req.status === 409) {
+        const {error} = ErrorSchema.parse(res);
+        return {
+            errors: [error],
+            success: ''
+        }
+    }
+
+    const success = SuccessSchema.parse(res)
 
     return {
-        errors: []
+        errors: [],
+        success
     }
 }
