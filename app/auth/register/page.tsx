@@ -22,7 +22,7 @@ export default function RegisterPage() {
             </Link>
 
             <Link 
-                href='/auth/forgat-password'
+                href='/auth/forgot-password'
                 className="text-center text-gray-500">
                 ¿Olvidaste tu contraseña? Reestablecer
             </Link>

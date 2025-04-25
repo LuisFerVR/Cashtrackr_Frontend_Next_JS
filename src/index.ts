@@ -19,3 +19,5 @@ export const SuccessSchema = z.string().min(1, { message: 'Mensaje inválido' })
 export const ErrorSchema = z.object({
     error: z.string()
 })
+
+export const TokenSchema = z.string().length(6, { message: 'El token es inválido' });
