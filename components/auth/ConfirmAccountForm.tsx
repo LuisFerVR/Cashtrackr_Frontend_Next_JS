@@ -4,8 +4,8 @@ import { confirmAccountAction } from "@/actions/confirm-account-action";
 import { PinInput, PinInputField } from "@chakra-ui/pin-input";
 import { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
-import ErrorMessage from "../UI/ErrorMessage";
-import SuccessMessage from "../UI/SuccessMessage";
+import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
 export default function ConfirmAccountForm() {
     const [isComplete, setIsComplete] = useState(false); // Controla si el usuario terminó de ingresar el token
@@ -15,15 +15,30 @@ export default function ConfirmAccountForm() {
         errors: [],
         success: ''
     }); // Maneja el estado de la respuesta (errores o éxito)
-
+    const router = useRouter(); // Hook de enrutamiento para redirigir al usuario después de la confirmación
     useEffect(() => {
         if (isComplete) {
             dispatch(); // Si el token está completo, se envía para confirmación
         }
     }, [isComplete]);
 
+    useEffect(() => {
+        if(state.errors){
+            state.errors.forEach(e => toast.error(e))
+        }
+        if(state.success){
+            toast.success(state.success,{
+                onClose: () => {
+                    router.push('/auth/login'); // Redirige al usuario a la página de inicio de sesión después de confirmar la cuenta
+                }
+            })
+        }
+
+    }, [state])
+
     const handleChange = (token: string) => {
         setToken(token); // Actualiza el token a medida que el usuario escribe
+        setIsComplete(false); // Resetea el estado de completado al cambiar el token
     };
 
     const handleComplete = () => {
@@ -32,11 +47,6 @@ export default function ConfirmAccountForm() {
 
     return (
         <>
-            {state.errors.map((error) => (
-                <ErrorMessage key={error}>{error}</ErrorMessage>
-            ))}
-            {state.success && <SuccessMessage>{state.success}</SuccessMessage>}
-            
             <div className="flex justify-center gap-5 my-10">
                 <PinInput value={token} onChange={handleChange} onComplete={handleComplete}>
                     {/* Campos individuales para cada dígito del PIN */}

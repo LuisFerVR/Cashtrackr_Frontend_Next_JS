@@ -1,4 +1,5 @@
 import Logo from "@/components/UI/Logo";
+import ToastNotification from "@/components/UI/ToastNotification";
 
 export default function RootLayout({
   children,
@@ -19,6 +20,7 @@ export default function RootLayout({
                 </div>
             </div>
     </div>
+    <ToastNotification />
   </>
   );
 }
