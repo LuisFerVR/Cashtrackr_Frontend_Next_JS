@@ -1,5 +1,9 @@
+import { Metadata } from "next";
 import Link from "next/link";
-
+export const metadata: Metadata = {
+    title: ' CashTrackr - Panel de Administración',
+    description: ' CashTrackr - Panel de Administración',
+}
 export default function AdminPage() {
     return (
         <>

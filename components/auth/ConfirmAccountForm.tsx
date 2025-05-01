@@ -5,7 +5,7 @@ import { PinInput, PinInputField } from "@chakra-ui/pin-input";
 import { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import { toast } from "react-toastify";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function ConfirmAccountForm() {
     const [isComplete, setIsComplete] = useState(false); // Controla si el usuario terminó de ingresar el token

@@ -5,8 +5,10 @@ import { useFormState } from "react-dom";
 import ErrorMessage from "../UI/ErrorMessage";
 import SuccessMessage from "../UI/SuccessMessage";
 import { useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 
 export default function RegisterForm() {
+    const router = useRouter();
     const ref = useRef<HTMLFormElement>(null);
     const [state, dispatch] = useFormState(createAccountAction, {
         errors:[],
@@ -16,6 +18,7 @@ export default function RegisterForm() {
     useEffect(() => {
         if (state.success) {
             ref.current?.reset()
+            router.push('/auth/confirm-account')
         }
     }, [state]);
 

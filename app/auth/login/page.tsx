@@ -17,7 +17,7 @@ export default function LoginPage() {
 
         <nav className="mt-10 flex-col space-y-4">
             <Link 
-                href='/auth/login'
+                href='/auth/register'
                 className="text-center text-gray-500">
                 ¿No tienes una cuenta? Crea una
             </Link>

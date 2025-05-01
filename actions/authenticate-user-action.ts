@@ -9,7 +9,6 @@ type ActionStateType = {
 }
 
 export async function authenticateUserAction(prevState: ActionStateType, formData: FormData) {
-    console.log("authenticateUserAction", prevState, formData);
     const loginCredentials = {
         email: formData.get("email"),
         password: formData.get("password"),

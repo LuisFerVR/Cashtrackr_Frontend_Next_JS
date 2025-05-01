@@ -14,7 +14,7 @@ export const verifySession = cache( async () => {
     const url = `${process.env.API_URL}/auth/user`;
     const req = await fetch(url, {
         headers: {
-            autorization: `Bearer ${token}`
+            authorization: `Bearer ${token}`
         }
     })
 
