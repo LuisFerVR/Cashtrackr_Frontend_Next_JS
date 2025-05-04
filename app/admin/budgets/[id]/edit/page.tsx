@@ -4,9 +4,7 @@ import getToken from "@/src/auth/token";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-const getBudgetById = async (id: string) => {
-    console.log(id);
-    
+const getBudgetById = async (id: string) => {    
     const token = getToken();
     const url = `${process.env.API_URL}/budgets/${id}`;
     const req = await fetch(url,{
@@ -15,7 +13,6 @@ const getBudgetById = async (id: string) => {
         }
     })
     const res = await req.json();
-    console.log(res);
     
     if (!req.ok) {
         notFound();

@@ -2,6 +2,7 @@ import { Budget } from '@/src'
 import React from 'react'
 
 export default function BudgetFieldsForm({budget}: {budget?: Budget}) {
+    
   return (
     <>
         <div className="space-y-3">
@@ -10,7 +11,7 @@ export default function BudgetFieldsForm({budget}: {budget?: Budget}) {
             </label>
             <input
                 id="name"
-                className="w-full p-3  border border-gray-100 bg-slate-100"
+                className="w-full p-3  border border-gray-100 bg-slate-100 text-black"
                 type="text"
                 placeholder="Nombre del Presupuesto"
                 name="name"
@@ -24,7 +25,7 @@ export default function BudgetFieldsForm({budget}: {budget?: Budget}) {
             <input
                 type="number"
                 id="amount"
-                className="w-full p-3  border border-gray-100 bg-slate-100"
+                className="w-full p-3  border border-gray-100 bg-slate-100 text-black"
                 placeholder="Cantidad Presupuesto"
                 name="amount"
                 defaultValue={budget?.amount}
