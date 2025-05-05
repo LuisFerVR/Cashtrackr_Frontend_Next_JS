@@ -2,6 +2,7 @@
 
 import { DraftBudgetSchema, SuccessSchema } from "@/src";
 import getToken from "@/src/auth/token";
+import { revalidatePath } from "next/cache";
 
 type ActionStateType ={
     errors: string[],
@@ -38,6 +39,8 @@ export async function createBudgetAction(prevState: ActionStateType, formData: F
 
     const res = await req.json();
     const success = SuccessSchema.parse(res);    
+
+    revalidatePath('/admin');
 
     return {
         errors: [],
