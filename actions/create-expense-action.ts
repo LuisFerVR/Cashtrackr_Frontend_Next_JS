@@ -2,6 +2,7 @@
 
 import { DraftExpenseEschema, ErrorSchema, SuccessSchema } from "@/src";
 import getToken from "@/src/auth/token";
+import { revalidatePath } from "next/cache";
 
 type ActionStateType = {
     errors: string[];
@@ -50,6 +51,8 @@ export default async function createExpenseAction(budgetId:number, prevState: Ac
     }
 
     const success = SuccessSchema.parse(res);
+    revalidatePath(`/admin/budgets/${budgetId}`);
+
     
     return {
         errors: [],
