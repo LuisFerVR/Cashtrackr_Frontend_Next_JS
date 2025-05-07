@@ -94,3 +94,4 @@ export const DraftExpenseEschema = z.object({
 export const BudgetsAPIResponseSchema = z.array(BudgetAPIResponseSchema.omit({expenses:true}));
 export type Budget = z.infer<typeof BudgetAPIResponseSchema>;
 export type Expense = z.infer<typeof ExpenseAPIResponseSchema>;
+export type DraftExpense = z.infer<typeof DraftExpenseEschema>;
