@@ -91,6 +91,15 @@ export const DraftExpenseEschema = z.object({
             .min(1, {message: 'Cantidad no válida'}),
 })
 
+export const UpdatePasswordSchemma = z.object({
+    current_password:z.string().min(1, {message: 'El password no puede ir vacío'}),
+    password:z.string().min(8, {message: 'El password debe tener al menos 8 caracteres'}),
+    password_confirmation:z.string()
+}).refine((data) => data.password === data.password_confirmation, {
+    message: 'Las contraseñas no coinciden',
+    path: ['password_confirmation']
+})
+
 export const BudgetsAPIResponseSchema = z.array(BudgetAPIResponseSchema.omit({expenses:true}));
 export type Budget = z.infer<typeof BudgetAPIResponseSchema>;
 export type Expense = z.infer<typeof ExpenseAPIResponseSchema>;
