@@ -36,7 +36,7 @@ export default async function deleteExpenseAction({budgetId, expenseId} :BudgetA
 
     const success = SuccessSchema.parse(res);
     revalidatePath(`/admin/budgets/${budgetId}`);
-
+    
     return {
         errors: [],
         success
