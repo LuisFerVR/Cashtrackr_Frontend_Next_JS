@@ -20,7 +20,7 @@ export default function ConfirmAccountForm() {
         if (isComplete) {
             dispatch(); // Si el token está completo, se envía para confirmación
         }
-    }, [isComplete]);
+    }, [isComplete, dispatch]);
 
     useEffect(() => {
         if(state.errors){
@@ -34,7 +34,7 @@ export default function ConfirmAccountForm() {
             })
         }
 
-    }, [state])
+    }, [state, router])
 
     const handleChange = (token: string) => {
         setToken(token); // Actualiza el token a medida que el usuario escribe

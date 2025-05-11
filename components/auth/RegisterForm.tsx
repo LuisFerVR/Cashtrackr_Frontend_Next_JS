@@ -20,7 +20,7 @@ export default function RegisterForm() {
             ref.current?.reset()
             router.push('/auth/confirm-account')
         }
-    }, [state]);
+    }, [state, router]);
 
   return (
     <form

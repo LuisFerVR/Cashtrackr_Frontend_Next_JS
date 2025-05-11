@@ -30,7 +30,7 @@ export default function ResetPasswordForm({token}: {token:string}) {
                 }
             });
         }
-    }, [state])
+    }, [state, router]);
   
     return (
       <form

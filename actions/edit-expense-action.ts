@@ -14,7 +14,7 @@ type BudgetAndExpenseId = {
     expenseId: Expense['id']
 }
 
-export default async function editExpenseAction ({budgetId,expenseId}: BudgetAndExpenseId,prevState: ActionStateType, formData: FormData) {
+export async function editExpenseAction ({budgetId,expenseId}: BudgetAndExpenseId,prevState: ActionStateType, formData: FormData) {
     const expense = DraftExpenseEschema.safeParse({
         name: formData.get('name'),
         amount: formData.get('amount')
@@ -45,7 +45,7 @@ export default async function editExpenseAction ({budgetId,expenseId}: BudgetAnd
 
     const res = await req.json();
     if(!req.ok) {
-        const {error} = ErrorSchema.safeParse(res); 
+        const {error} = ErrorSchema.parse(res); 
         return {
             errors: [error],
             success: ''

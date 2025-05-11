@@ -24,7 +24,7 @@ export default function ValidateTokenForm( {setIsValidToken, token , setToken} :
             dispatch();
         }
 
-    },[isComplete]);
+    },[isComplete, dispatch]);
 
     useEffect(()=>{
         if(state.errors){

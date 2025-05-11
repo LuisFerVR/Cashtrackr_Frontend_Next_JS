@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation"
 
 export default function BudgetMenu({budgetId}:{budgetId:Budget['id']}) {
   const router = useRouter()
+  if (!budgetId) return null;
   return (
     <>
       <Menu as="div" className="relative flex-none">

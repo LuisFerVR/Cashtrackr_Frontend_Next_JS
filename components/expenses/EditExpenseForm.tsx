@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import { DraftExpense } from "@/src";
 import { useFormState } from "react-dom";
-import editExpenseAction from "@/actions/edit-expense-action";
 import ErrorMessage from "../UI/ErrorMessage";
 import { toast } from "react-toastify";
+import { editExpenseAction } from "@/actions/edit-expense-action";
 
 export default function EditExpenseForm({ closeModal }: { closeModal: () => void }) {
   const [stateExpense, setExpense] = useState<DraftExpense>();

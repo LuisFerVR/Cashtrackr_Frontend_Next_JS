@@ -1,8 +1,13 @@
 import { verifySession } from "@/src/auth/dal"
 import ProfileForm from "../ProfileForm"
+import { UserSchema } from "@/src"
 
 export default async function EditProfilePage() {
   const {user} = await verifySession()
+  const safeUser = UserSchema.safeParse(user);
+if (!safeUser.success) {
+  return <p>Error al cargar los datos del usuario</p>;
+}
 
     return (
       <>
@@ -12,7 +17,7 @@ export default async function EditProfilePage() {
           </p>
 
       <ProfileForm 
-        user={user}
+        user={safeUser.data}
       />
       </>
     )

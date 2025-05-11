@@ -2,11 +2,13 @@
 import { Fragment } from 'react'
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid'
 import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/react'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { Expense } from '@/src'
 
-export default function ExpenseMenu({expenseId} : {expense: Expense['id']}) {
+export default function ExpenseMenu({expenseId} : {expenseId: Expense['id']}) {
     const router = useRouter();
+    const pathname = usePathname();
+    if (!expenseId) return null;
   
   return (
     <div className="flex shrink-0 items-center gap-x-6">
@@ -29,7 +31,7 @@ export default function ExpenseMenu({expenseId} : {expense: Expense['id']}) {
               <button
                 type='button'
                 className='block px-3 py-1 text-sm leading-6 text-gray-900'
-                onClick={() => router.push(location.pathname + `?showModal=true&editExpenseId=${expenseId}`)}
+                onClick={() => router.push(`${pathname}?showModal=true&editExpenseId=${expenseId}`)}
               >
                 Editar Gasto
               </button>
@@ -39,7 +41,7 @@ export default function ExpenseMenu({expenseId} : {expense: Expense['id']}) {
               <button
                 type='button'
                 className='block px-3 py-1 text-sm leading-6 text-red-500'
-                onClick={() => router.push(location.pathname + `?showModal=true&deleteExpenseId=${expenseId}`)}
+                onClick={() => router.push(`${pathname}?showModal=true&deleteExpenseId=${expenseId}`)}
               >
                 Eliminar Gasto
               </button>

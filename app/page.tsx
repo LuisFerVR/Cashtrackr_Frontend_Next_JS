@@ -1,4 +1,4 @@
-import Logo from "@/public/logo.svg";
+import Logo from "@/components/UI/Logo";
 import Link from "next/link";
 
 export default function Home() {
